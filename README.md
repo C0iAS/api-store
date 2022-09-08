@@ -1,1 +1,1 @@
-# nextjs-store
+# api-store
