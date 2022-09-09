@@ -1,19 +1,18 @@
 const express = require('express');
+const routerApi = require('./routes');
 const app = express();
 const port = 3000;
+
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('hola');
 })
 
-app.get('/products', (req, res) => {
-  res.json({
-    name: 'product1',
-    category: 'product category',
-    price: '$2000'
-  });
-})
+routerApi(app);
 
 app.listen(port, () => {
   console.log('Mi port' + port);
 });
+
+module.exports = routerApi;
