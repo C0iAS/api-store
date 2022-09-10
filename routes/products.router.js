@@ -5,13 +5,13 @@ const { createProductSchema, updateProductSchema, getProductSchema } = require('
 const router = express.Router();
 const service = new ProductsService();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
+  try {
   const products = await service.find();
   res.json(products);
-});
-
-router.get('/filter', (req, res) => {
-  res.send('filtro');
+  } catch(error) {
+    next(error);
+  }
 });
 
 router.get('/:id',
@@ -44,7 +44,7 @@ router.patch('/:id', validatorHandler(getProductSchema, 'params'), validatorHand
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', validatorHandler(getProductSchema, 'params'), async (req, res, next) => {
   try {
     const { id } = req.params;
     const rta = await service.delete(id)
