@@ -185,5 +185,6 @@ dist
 
 postgres_data
 mysql_data
+anexos
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,visualstudiocode,node

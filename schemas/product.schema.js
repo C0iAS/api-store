@@ -26,7 +26,7 @@ const updateProductSchema = Joi.object({
   price: price,
   image: image,
   description: description,
-  categoryId
+  categoryId: categoryId
 });
 
 const getProductSchema = Joi.object({

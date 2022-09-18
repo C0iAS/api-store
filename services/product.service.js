@@ -61,15 +61,9 @@ class ProductsService {
   }
 
   async update(id, changes) {
-    const index = this.products.findIndex(item => item.id === id);
-    if (index === -1) {
-      throw boom.notFound('Product not found');
-    }
-    this.products[index] = {
-      ...this.products[index],
-      ...changes
-    }
-    return this.products[index];
+    const product = await models.Product.findByPk(id);
+    const rta = product.update(changes);
+    return rta;
   }
 
   async delete(id) {

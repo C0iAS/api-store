@@ -31,9 +31,10 @@ class CategoryService {
   }
 
   async delete(id) {
+    const category = await models.Category.findByPk(id);
+    await category.destroy();
     return { id };
   }
-
 }
 
 module.exports = CategoryService;
